@@ -2,6 +2,8 @@ import { from, forkJoin, of } from 'rxjs';
 import { switchMap, map, catchError, tap } from 'rxjs/operators';
 import { ajax } from 'rxjs/ajax';
 
+const API_BASE = process.env.API_BASE_URL ? `${process.env.API_BASE_URL}` : '';
+
 function formatDate(timestamp) {
   const date = new Date(timestamp);
   return date.toLocaleString('ru-RU', {
@@ -14,7 +16,7 @@ function formatDate(timestamp) {
 }
 
 function fetchPosts() {
-  return ajax.getJSON('/api/posts/latest').pipe(
+  return ajax.getJSON(${API_BASE}/api/posts/latest).pipe(
     tap(response => console.log('Ответ /posts/latest:', response)),
     map(response => response.data || response || []),
     catchError(error => {
@@ -29,7 +31,7 @@ function fetchCommentsForPost(post) {
   // return ajax.getJSON(`/api/posts/${post.id}/comments/latest`)
 
   // Стало (работает с query-параметром):
-  return ajax.getJSON(`/api/posts/comments?postId=${post.id}`).pipe(
+  return ajax.getJSON(`{API_BASE}/api/posts/comments?postId=${post.id}`).pipe(
     map(response => ({ ...post, comments: response.data })),
     catchError(error => {
       console.error(`Ошибка загрузки комментариев для поста ${post.id}:`, error);
