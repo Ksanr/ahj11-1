@@ -11,3 +11,92 @@
 .messages-table th {
   background-color: #f2f2f2;
 }
+
+
+.post {
+  border: 1px solid #ddd;
+  margin: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.post-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.author-info {
+  display: flex;
+  flex-direction: column;
+}
+.author-name {
+  font-weight: bold;
+}
+.post-date {
+  font-size: 0.8em;
+  color: #666;
+}
+.post-title {
+  margin: 10px 0;
+}
+.post-image {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin: 10px 0;
+}
+.comments {
+  margin-top: 15px;
+  border-top: 1px solid #eee;
+  padding-top: 10px;
+}
+.comments-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.comment {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+  padding: 8px;
+  background: #f9f9f9;
+  border-radius: 6px;
+}
+.comment-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.comment-content {
+  flex: 1;
+}
+.comment-author {
+  font-weight: bold;
+  margin-right: 8px;
+}
+.comment-text {
+  display: block;
+  margin: 4px 0;
+}
+.comment-date {
+  font-size: 0.7em;
+  color: #888;
+}
+.loading, .error {
+  text-align: center;
+  padding: 40px;
+  font-size: 1.2em;
+}
+.error {
+  color: red;
+}

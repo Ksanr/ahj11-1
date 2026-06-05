@@ -1,3 +1,9 @@
 {
-  "outputDirectory": "dist"
+  "outputDirectory": "dist",
+  "rewrites": [
+    {
+      "source": "/api/posts/:postId/comments/latest",
+      "destination": "/api/posts/comments?postId=:postId"
+    }
+  ]
 }

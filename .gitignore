@@ -102,3 +102,4 @@ server/server-local.js
 # Зависимости
 node_modules
 .vercel
+.env*
