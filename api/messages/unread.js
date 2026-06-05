@@ -5,20 +5,21 @@ export default function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  // Обрабатываем preflight-запрос (OPTIONS)
+
+  // Preflight (OPTIONS)
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
-  // Имитация задержки сети
-  setTimeout(() => {
-    // Генерируем от 1 до 3 случайных сообщений
+
+  try {
+    // Генерация случайных сообщений
     const count = faker.number.int({ min: 1, max: 3 });
     const messages = Array.from({ length: count }, () => ({
       id: faker.string.uuid(),
       from: faker.internet.email(),
       subject: faker.lorem.sentence({ min: 3, max: 8 }),
       body: faker.lorem.paragraph(),
-      received: faker.date.recent({ days: 7 }).getTime() / 1000, // timestamp в секундах
+      received: faker.date.recent({ days: 7 }).getTime() / 1000,
     }));
 
     res.status(200).json({
@@ -26,5 +27,8 @@ export default function handler(req, res) {
       timestamp: Math.floor(Date.now() / 1000),
       messages,
     });
-  }, 300); // небольшая задержка для имитации реальной сети
+  } catch (error) {
+    console.error('Ошибка генерации сообщений:', error);
+    res.status(500).json({ status: 'error', message: 'Внутренняя ошибка сервера' });
+  }
 }
