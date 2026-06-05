@@ -1,0 +1,13 @@
+.messages-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+}
+.messages-table th, .messages-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+.messages-table th {
+  background-color: #f2f2f2;
+}
