@@ -1,6 +1,11 @@
 import { faker } from '@faker-js/faker';
 
 export default function handler(req, res) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
   // Имитация задержки сети
   setTimeout(() => {
     // Генерируем от 1 до 3 случайных сообщений

@@ -1,4 +1,5 @@
 import path from 'path';
+import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { fileURLToPath } from 'url';
 
@@ -49,5 +50,8 @@ export default {
       template: './src/index.html',
       title: 'RxJS Homework',
     }),
+    new webpack.DefinePlugin({
+      'process.env.API_BASE_URL': JSON.stringify(process.env.API_BASE_URL || '')
+    })
   ],
 };

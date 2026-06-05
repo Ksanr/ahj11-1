@@ -2,6 +2,10 @@ import { interval, from } from 'rxjs';
 import { switchMap, catchError, map } from 'rxjs/operators';
 import { ajax } from 'rxjs/ajax';
 
+const API_URL = process.env.API_BASE_URL
+  ? `${process.env.API_BASE_URL}/api/messages/unread`
+  : '/api/messages/unread';
+
 /**
  * Форматирует timestamp (в секундах) в строку "ЧЧ:ММ ДД.ММ.ГГГГ"
  * @param {number} timestamp - секунды с эпохи
@@ -75,7 +79,7 @@ export function initPollingWidget(container) {
 
   // Поток опроса: каждые 5 секунд делаем GET-запрос
   interval(5000).pipe(
-    switchMap(() => ajax.getJSON('/api/messages/unread').pipe(
+    switchMap(() => ajax.getJSON(API_URL).pipe(
       catchError(err => {
         console.error('Ошибка при опросе сервера:', err);
         // Возвращаем пустой массив сообщений (аналог отсутствия новых)
