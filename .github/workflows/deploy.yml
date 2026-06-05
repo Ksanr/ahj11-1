@@ -31,7 +31,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          API_BASE_URL: https://ahj11-1-nlwcyd1xn-ksanr-s-projects.vercel.app
+          API_BASE_URL: https://ahj11-1-i3153h3xc-ksanr-s-projects.vercel.app
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
