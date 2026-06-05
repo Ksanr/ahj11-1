@@ -16,7 +16,7 @@ function formatDate(timestamp) {
 }
 
 function fetchPosts() {
-  return ajax.getJSON(${API_BASE}/api/posts/latest).pipe(
+  return ajax.getJSON(`${API_BASE}/api/posts/latest`).pipe(
     tap(response => console.log('Ответ /posts/latest:', response)),
     map(response => response.data || response || []),
     catchError(error => {
@@ -27,11 +27,9 @@ function fetchPosts() {
 }
 
 function fetchCommentsForPost(post) {
-  // Было (с красивым URL, но не работает локально):
-  // return ajax.getJSON(`/api/posts/${post.id}/comments/latest`)
-
-  // Стало (работает с query-параметром):
-  return ajax.getJSON(`{API_BASE}/api/posts/comments?postId=${post.id}`).pipe(
+  const url = `${API_BASE}/api/posts/comments?postId=${post.id}`;
+  console.log(`Загружаем комментарии для поста ${post.id}: ${url}`);
+  return ajax.getJSON(url).pipe(
     map(response => ({ ...post, comments: response.data })),
     catchError(error => {
       console.error(`Ошибка загрузки комментариев для поста ${post.id}:`, error);
