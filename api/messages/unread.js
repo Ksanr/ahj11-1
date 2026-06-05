@@ -4,7 +4,8 @@ export default function handler(req, res) {
   // CORS-заголовки
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  // Добавляем X-Requested-With в разрешённые заголовки
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-Requested-With');
 
   // Preflight (OPTIONS)
   if (req.method === 'OPTIONS') {
