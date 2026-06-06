@@ -12,7 +12,7 @@
   background-color: #f2f2f2;
 }
 
-
+/* post 2 */
 .post {
   border: 1px solid #ddd;
   margin: 20px;
@@ -99,4 +99,191 @@
 }
 .error {
   color: red;
+}
+
+/* Dashboard layout */
+.dashboard-stats, .dashboard-tasks {
+  display: inline-block;
+  vertical-align: top;
+  width: 45%;
+  margin: 1%;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #f9f9f9;
+}
+.dashboard-stats ul, .dashboard-tasks ul {
+  list-style: none;
+  padding: 0;
+}
+.dashboard-stats li {
+  padding: 8px;
+  margin: 4px 0;
+  background: #e9ecef;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.dashboard-stats li:hover {
+  background: #dee2e6;
+}
+.dashboard-tasks li {
+  margin: 8px 0;
+}
+.dashboard-tasks input {
+  margin-right: 10px;
+}
+
+/* Таблица статистики */
+.stats-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+.stats-table th, .stats-table td {
+  padding: 8px;
+  border: none; /* убрать все границы */
+}
+.stats-table th:first-child, .stats-table td:first-child {
+  width: 80%;
+  text-align: left;
+}
+.stats-table th:last-child, .stats-table td:last-child {
+  width: 20%;
+  text-align: center;
+}
+.stats-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+.stats-table td:first-child {
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.stats-table td:first-child:hover {
+  background-color: #e9ecef;
+}
+/* Овал для количества задач */
+.task-count-oval {
+  display: inline-block;
+  background-color: #000;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  min-width: 60px;   /* ширина ~4 символов (примерно) */
+  width: auto;
+  padding: 4px 12px;
+  border-radius: 30px; /* вытянутый овал */
+  line-height: 1.4;
+  font-size: 0.9rem;
+}
+
+
+/* Правый виджет */
+.tasks-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+.project-select {
+  padding: 5px 10px;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+/* Правый виджет */
+.tasks-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  padding: 5px;
+  background: #fff;
+  border-radius: 4px;
+}
+/* Круглый чекбокс */
+.task-checkbox {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #007bff;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+  position: relative;
+  outline: none;
+}
+.task-checkbox:checked {
+  background: #007bff;
+  border-color: #007bff;
+}
+.task-checkbox:checked::after {
+  content: '';
+  display: block;
+  width: 6px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  position: absolute;
+  top: 2px;
+  left: 6px;
+  transform: rotate(45deg);
+}
+/* Кликабельная ссылка проекта */
+.project-line {
+  margin: 10px 0;
+  font-size: 1.1rem;
+}
+.project-link {
+  color: #007bff;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.project-link:hover {
+  color: #0056b3;
+}
+/* Меню выбора проекта */
+.project-menu {
+  position: absolute;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  min-width: 180px;
+  z-index: 1000;
+  margin: 0 !important;
+  top: -100px;
+  left: -100px;
+}
+.project-menu .menu-current {
+  padding: 8px 12px;
+  font-weight: bold;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #eee;
+}
+.project-menu hr {
+  margin: 0;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+.project-menu .menu-item {
+  padding: 8px 12px 8px 82px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.project-menu .menu-item:hover {
+  background-color: #e9ecef;
+}
+
+.project-line {
+  position: relative;
+  margin: 10px 0;
+  font-size: 1.1rem;
 }
