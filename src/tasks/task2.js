@@ -143,7 +143,7 @@ function renderPosts(postsWithComments, container) {
 export function initPostsWidget(container) {
   container.innerHTML = '<div class="loading">Загрузка постов...</div>';
 
-  fetchPosts()
+  const subscription = fetchPosts()
     .pipe(
       switchMap(posts => {
         if (!posts.length) return of([]);
@@ -160,4 +160,12 @@ export function initPostsWidget(container) {
         container.innerHTML = '<div class="error">Произошла ошибка. Проверьте консоль.</div>';
       }
     });
+
+  // Возвращаем функцию очистки
+  return {
+    destroy() {
+      subscription.unsubscribe();
+      console.log('Задача 2: подписка отключена');
+    }
+  };
 }

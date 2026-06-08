@@ -78,7 +78,8 @@ export function initPollingWidget(container) {
   container.append(table);
 
   // Поток опроса: каждые 5 секунд делаем GET-запрос
-  interval(5000).pipe(
+  // Сохраняем подписку
+  const subscription = interval(5000).pipe(
     switchMap(() => ajax.getJSON(API_URL).pipe(
       catchError(err => {
         console.error('Ошибка при опросе сервера:', err);
@@ -96,4 +97,12 @@ export function initPollingWidget(container) {
       tbody.insertAdjacentHTML('afterbegin', messageRowHtml(msg));
     }
   });
+
+  // Возвращаем функцию очистки
+  return {
+    destroy() {
+      subscription.unsubscribe();
+      console.log('Задача 1: подписка отключена');
+    }
+  };
 }

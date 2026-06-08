@@ -24,22 +24,26 @@ document.addEventListener('DOMContentLoaded', () => {
   toolbar.append(btnTask1, btnTask2, btnTask3);
   document.body.insertBefore(toolbar, app);
 
-  // Текущий активный виджет
-  let currentWidget = null;
+  // функция уничтожения текущего виджета
+  let currentDestroy = null;
 
   function switchToTask(taskNumber) {
-    if (currentWidget) {
+    if (currentDestroy) {
       // Удаляем предыдущий виджет (очищаем контейнер)
-      app.innerHTML = '';
+      currentDestroy();
+      currentDestroy = null;
     }
+    app.innerHTML = '';
     if (taskNumber === 1) {
-      initPollingWidget(app);
+      const widget = initPollingWidget(app);
+      currentDestroy = widget.destroy.bind(widget);
     } else if (taskNumber === 2) {
-      initPostsWidget(app);
+      const widget = initPostsWidget(app);
+      currentDestroy = widget.destroy.bind(widget);
     } else {
-      initDashboard(app);
+      const widget = initDashboard(app);
+      currentDestroy = widget.destroy.bind(widget);
     }
-    currentWidget = taskNumber;
   }
 
   btnTask1.addEventListener('click', () => switchToTask(1));

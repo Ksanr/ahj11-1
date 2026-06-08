@@ -23,4 +23,13 @@ export function initDashboard(container) {
 
   const firstProject = store.getState().projects[0];
   if (firstProject) tasksWidget.setProject(firstProject.id);
+
+  // Возвращаем функцию очистки
+  return {
+    destroy() {
+      statsWidget.destroy();
+      tasksWidget.destroy();
+      console.log('Задача 3: виджеты уничтожены');
+    }
+  };
 }
